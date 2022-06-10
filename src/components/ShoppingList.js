@@ -44,7 +44,6 @@ function ShoppingList({ items , onAddToList }) {
     ])
     e.target.reset()
     e.target.children[2].disabled = true
-    console.log(items)
   }
 
 
@@ -67,7 +66,7 @@ function ShoppingList({ items , onAddToList }) {
   return (
     <div className="ShoppingList">
       
-      <ItemForm onSelect={handleNewCategoryChange} onInput={handleNewNameChange} onAdd={handleNewIdChange}/>
+      <ItemForm onSelect={handleNewCategoryChange} onInput={handleNewNameChange} onItemFormSubmit={handleNewIdChange}/>
       
       <Filter keyword={keyword} onSearchChange={handleKeywordChange} onCategoryChange={handleCategoryChange} />
       

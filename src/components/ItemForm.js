@@ -1,8 +1,8 @@
 import React from "react";
 
-function ItemForm( { onSelect, onInput , onAdd  } ) {
+function ItemForm( { onSelect, onInput , onItemFormSubmit  } ) {
   return (
-    <form className="NewItem" onSubmit={onAdd}>
+    <form className="NewItem" onSubmit={onItemFormSubmit}>
       <label>
         Name:
         <input type="text" name="name" onChange={onInput} />
