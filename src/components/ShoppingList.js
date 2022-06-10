@@ -4,7 +4,7 @@ import Filter from "./Filter";
 import Item from "./Item";
 import { v4 as uuid } from "uuid";
 
-function ShoppingList({ items }) {
+function ShoppingList({ items , onAddToList }) {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [keyword , setKeyword] = useState('')
   
@@ -13,8 +13,6 @@ function ShoppingList({ items }) {
     name: '',
     category: 'Produce',
   })
-
-  const [allItems , setAllItems] = useState([...items])
 
   function handleNewNameChange(e) {
     setFormData({
@@ -41,10 +39,12 @@ function ShoppingList({ items }) {
       ...formData,
       id: uuid(),
     })
-    setAllItems([
-      ...allItems , formData
+    onAddToList([
+      ...items , formData
     ])
     e.target.reset()
+    e.target.children[2].disabled = true
+    console.log(items)
   }
 
 
@@ -56,7 +56,7 @@ function ShoppingList({ items }) {
     setSelectedCategory(event.target.value);
   }
 
-  const itemsToDisplay = allItems.filter((item)=>{
+  const itemsToDisplay = items.filter((item)=>{
     return item.name.toLowerCase().includes(keyword.toLowerCase())
   }).filter((item) => {
     if (selectedCategory === "All") return true;
